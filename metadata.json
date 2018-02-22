@@ -1,0 +1,81 @@
+{
+  "name": "ckpuppet-sensu",
+  "version": "2.50.0",
+  "author": "ckpuppet",
+  "summary": "A module to install the Sensu monitoring framework",
+  "license": "Apache-2.0",
+  "source": "http://ck-git1.ck1.dmn/ckpuppet/sensu.git",
+  "project_page": "null",
+  "issues_url": "null",
+  "dependencies": [
+    {
+      "name": "lwf/remote_file",
+      "version_requirement": ">= 1.0.0 <2.0.0"
+    },
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">=4.24.0 <5.0.0"
+    }
+  ],
+  "data_provider": null,
+  "tags": [
+    "sensu",
+    "monitoring"
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Darwin",
+      "operatingsystemrelease": [
+        "17"
+      ]
+    },
+    {
+      "operatingsystem": "Windows",
+      "operatingsystemrelease": [
+        "Server 2008 R2",
+        "Server 2012 R2"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "7",
+        "8",
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "14.04",
+        "16.04"
+      ]
+    },
+    {
+      "operatingsystem": "Amazon",
+      "operatingsystemrelease": [
+        "2017.03"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">=4.0.0 < 6.0.0"
+    }
+  ]
+}
