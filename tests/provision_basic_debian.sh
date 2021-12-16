@@ -31,7 +31,7 @@ apt-key adv --fetch-keys http://apt.puppetlabs.com/DEB-GPG-KEY-puppet
 apt-get -y install wget
 
 # install and configure puppet
-deb_install http://apt.puppetlabs.com/puppetlabs-release-pc1-${CODENAME}.deb
+deb_install http://apt.puppetlabs.com/puppet6-release-${CODENAME}.deb
 apt-get update
 apt-get -y install puppet-agent
 ln -s /opt/puppetlabs/puppet/bin/puppet /usr/bin/puppet
@@ -52,10 +52,12 @@ EOF
 puppet resource file /etc/puppetlabs/code/environments/production/modules/sensu ensure=link target=/vagrant
 
 # setup module dependencies
-puppet module install puppetlabs/stdlib --version 4.24.0
-puppet module install puppetlabs/apt --version 4.1.0
-puppet module install lwf-remote_file --version 1.1.3
-puppet module install puppetlabs/powershell --version 2.1.0
+puppet module install puppetlabs/stdlib --version ">= 5.1.0 < 8.0.0"
+puppet module install puppetlabs/apt --version ">= 5.0.1 < 9.0.0"
+puppet module install richardc-datacat --version ">= 0.6.2 < 2.0.0"
 
-# install dependencies for sensu
-apt-get -y install ruby-json
+puppet resource host sensu-backend.example.com ensure=present ip=192.168.52.10 host_aliases=sensu-backend
+puppet config set --section main certname sensu-agent
+
+[ ! -d /etc/puppetlabs/puppet/ssl ] && mkdir /etc/puppetlabs/puppet/ssl
+cp -r /vagrant/tests/ssl/* /etc/puppetlabs/puppet/ssl/

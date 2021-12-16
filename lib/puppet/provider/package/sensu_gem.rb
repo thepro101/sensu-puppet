@@ -1,30 +1,20 @@
 require 'puppet/provider/package'
-require 'uri'
 
-# Ruby gems support.
+# Sensu Embedded Ruby gems support.
 Puppet::Type.type(:package).provide :sensu_gem, :parent => :gem do
-  desc "Sensu Embedded Ruby Gem support. If a URL is passed via `source`, then
-    that URL is used as the remote gem repository; if a source is present but is
-    not a valid URL, it will be interpreted as the path to a local gem file.  If
-    source is not present at all, the gem will be installed from the default gem
-    repositories."
+  desc "Sensu Embedded Ruby Gem support. If a URL is passed via `source`, then that URL is
+    appended to the list of remote gem repositories; to ensure that only the
+    specified source is used, also pass `--clear-sources` via `install_options`.
+    If source is present but is not a valid URL, it will be interpreted as the
+    path to a local gem file. If source is not present, the gem will be
+    installed from the default gem repositories. Note that to modify this for Windows, it has to be a valid URL.
+    This provider supports the `install_options` and `uninstall_options` attributes,
+    which allow command-line flags to be passed to the gem command.
+    These options should be specified as an array where each element is either a 
+    string or a hash."
 
-  has_feature :versionable, :install_options
 
-  commands :gemcmd =>
-    if RUBY_PLATFORM =~ /cygwin|mswin|mingw|bccwin|winse|emx/
-      "#{ENV['SYSTEMDRIVE']}\\opt\\sensu\\embedded\\bin\\gem.cmd"
-    else
-      "/opt/sensu/embedded/bin/gem"
-    end
+  has_feature :versionable, :install_options, :uninstall_options, :targetable
 
-  def uninstall
-    command = [command(:gemcmd), "uninstall"]
-    command << "-x" << "-a" << resource[:name]
-    output = execute(command)
-
-    # Apparently some stupid gem versions don't exit non-0 on failure
-    self.fail "Could not uninstall: #{output.chomp}" if output.include?("ERROR")
-  end
-
+  commands :gemcmd => "/opt/sensu-plugins-ruby/embedded/bin/gem"
 end
