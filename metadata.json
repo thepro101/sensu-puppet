@@ -1,7 +1,7 @@
 {
   "name": "sensu-sensu",
-  "version": "5.8.0",
-  "author": "ckpuppet",
+  "version": "5.11.1",
+  "author": "sensu",
   "summary": "A module to install the Sensu monitoring framework",
   "license": "MIT",
   "source": "https://github.com/sensu/sensu-puppet",
@@ -22,14 +22,13 @@
     },
     {
       "name": "puppet/systemd",
-      "version_requirement": ">= 3.1.0 < 4.0.0"
+      "version_requirement": ">= 2.0.0 < 4.0.0"
     }
   ],
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "6",
         "7",
         "8"
       ]
@@ -37,7 +36,6 @@
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "6",
         "7",
         "8"
       ]
@@ -45,14 +43,12 @@
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "9",
         "10"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "16.04",
         "18.04",
         "20.04"
       ]

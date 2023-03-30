@@ -170,7 +170,7 @@ Breaking changes:
 
 ## Setup
 
-### What sensu effects
+### What sensu affects
 
 This module will install packages, create configuration and start services necessary to manage Sensu agents and backend.
 
@@ -484,6 +484,20 @@ sensu::agent::annotation { 'ec2_access_key':
 }
 ```
 
+### Advanced agent - Disable validations
+
+In some cases it might be desired to disable API and entity validations when agents are managing their own entity.
+
+```puppet
+class { 'sensu':
+  validate_api => false,
+}
+class { 'sensu::agent':
+  agent_managed_entity => true,
+  validate_entity      => false,
+}
+```
+
 ### Advanced agent - Custom config entries
 
 It is possible to define config entries for `agent.yml` in many locations in Puppet:
@@ -549,7 +563,7 @@ The types `sensu_ad_auth` and `sensu_ldap_auth` require a valid enterprise licen
 
 ### Contact routing
 
-See [Sensu Go - Contact Routing](https://docs.sensu.io/sensu-go/latest/guides/contact-routing/) for details. The following is one way to configure contact routing in Puppet.
+See [Sensu Go - Route alerts with event filters](https://docs.sensu.io/sensu-go/latest/observability-pipeline/observe-filter/route-alerts/) for details. The following is one way to configure contact routing in Puppet.
 
 Add the sensu-go-has-contact-filter bonsai asset:
 
@@ -648,7 +662,7 @@ The following example will add a PostgreSQL server and database to the sensu-bac
 ```puppet
 class { 'postgresql::globals':
   manage_package_repo => true,
-  version             => '9.6',
+  version             => '11',
 }
 class { 'postgresql::server': }
 class { 'sensu::backend':
@@ -671,6 +685,8 @@ class { 'sensu::backend':
   manage_postgresql_db => false,
 }
 ```
+
+**NOTE** Set `postgresql_password` to `false` if you want the DSN to only contain a username.
 
 ### Installing Plugins
 
