@@ -18,11 +18,11 @@
     },
     {
       "name": "puppetlabs/postgresql",
-      "version_requirement": ">= 6.4.0 <= 10.1.0"
+      "version_requirement": ">= 6.4.0 <= 10.5.0"
     },
     {
       "name": "puppet/systemd",
-      "version_requirement": ">= 3.1.0 < 6.0.0"
+      "version_requirement": ">= 3.1.0 < 7.0.0"
     }
   ],
   "operatingsystem_support": [
