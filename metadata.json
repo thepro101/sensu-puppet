@@ -1,6 +1,6 @@
 {
   "name": "sensu-sensu",
-  "version": "5.8.0",
+  "version": "5.8.1",
   "author": "ckpuppet",
   "summary": "A module to install the Sensu monitoring framework",
   "license": "MIT",
@@ -10,7 +10,7 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 5.1.0 < 7.0.0"
+      "version_requirement": ">= 5.1.0 < 10.0.0"
     },
     {
       "name": "richardc/datacat",
@@ -18,11 +18,11 @@
     },
     {
       "name": "puppetlabs/postgresql",
-      "version_requirement": ">= 6.4.0 < 8.0.0"
+      "version_requirement": ">= 6.4.0 <= 10.1.0"
     },
     {
       "name": "puppet/systemd",
-      "version_requirement": ">= 3.1.0 < 4.0.0"
+      "version_requirement": ">= 3.1.0 < 6.0.0"
     }
   ],
   "operatingsystem_support": [
